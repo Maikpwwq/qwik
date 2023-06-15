@@ -33,6 +33,14 @@ It also adds new files inside to your `components` folder.
 import { QwikPartytown } from './components/partytown/partytown';
 
 export default component$(() => {
+
+  const analyticsScript = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-**********');
+  `;
+
   return (
     <QwikCityProvider>
       <head>
@@ -43,6 +51,7 @@ export default component$(() => {
           type="text/partytown"
           src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"
         />
+        <script defer async dangerouslySetInnerHTML={analyticsScript}></script>
       </head>
       <body lang="en"></body>
     </QwikCityProvider>
